@@ -1,6 +1,5 @@
 .d-flex {
   display: flex;
-  align-items: center;
 }
 
 .just-space {
@@ -10,4 +9,7 @@
 }
 .px-20 {
   padding: 0px 20px;
+}
+.col-center {
+  text-align: center;
 }

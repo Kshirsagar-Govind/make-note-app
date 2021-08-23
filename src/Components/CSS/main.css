@@ -1,9 +1,19 @@
 @import url('./fonts.css');
 @import url('./comps.css');
 @import url('./classes.css');
+@import url('./notebook-page.css');
 
-.main-nav-bar {
-  width: 100%;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.home-page {
   margin-top: 30px;
 }
 .main-nav-bar > .d-flex > .brand {

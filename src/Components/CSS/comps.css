@@ -2,9 +2,13 @@
   --primary: #ff006b;
   --pure: #ffffff;
   --greyshade: #4f4f4f;
+  --light_primary: #ffe2ee;
 }
 .pure {
   color: var(--pure);
+}
+.grey {
+  color: var(--greyshade);
 }
 .brand {
   min-width: 100px;
@@ -20,4 +24,23 @@
   height: 2px;
   background-color: var(--greyshade);
   width: 100%;
+}
+
+#task-container {
+  width: 215px;
+  height: 255px;
+  /* border: 2px solid red; */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+.task-card {
+  padding: 15px 20px;
+}
+
+.task-header {
+  width: inherit;
+  height: 180px;
+}
+.task-header > p {
+  margin-top: 15px;
 }

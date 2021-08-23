@@ -1,0 +1,65 @@
+#notebook-page {
+  position: relative;
+}
+.side-menu {
+  width: 300px;
+  height: 100vh;
+  box-shadow: 4px 0px 10px rgba(155, 0, 107, 0.12);
+  background-color: var(--light_primary);
+}
+.side-menu > .brand {
+  margin: auto;
+  margin-top: 20px;
+}
+.menus {
+  margin-top: 50px;
+  width: inherit;
+}
+
+.menus > ul > li {
+  padding: 5px 60px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+.menu {
+  color: var(--greyshade);
+  transition: 0.2s;
+}
+.menu:hover {
+  color: black;
+}
+.active-menu {
+  background-color: var(--pure);
+  color: var(--primary);
+  width: 95%;
+  height: 40px;
+  list-style: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: -0px 5px 8px rgba(0, 0, 0, 0.1);
+}
+.right-view-section {
+  padding: 25px 40px;
+}
+.note-card {
+  margin-top: 50px;
+  margin-left: 100px;
+  row-gap: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.right-view-section {
+  width: 100%;
+}
+#note-page {
+  padding: 10px 40px;
+}
+#note-area {
+  resize: none;
+  padding: 20px;
+  width: 100%;
+  height: 80vh;
+  outline: none;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+}
