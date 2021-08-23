@@ -1,0 +1,23 @@
+:root {
+  --primary: #ff006b;
+  --pure: #ffffff;
+  --greyshade: #4f4f4f;
+}
+.pure {
+  color: var(--pure);
+}
+.brand {
+  min-width: 100px;
+  max-width: fit-content;
+  max-height: fit-content;
+  padding: 5px 20px;
+  background-color: var(--primary);
+  border-radius: 15px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.09);
+}
+.hr-line {
+  margin: 15px 0px;
+  height: 2px;
+  background-color: var(--greyshade);
+  width: 100%;
+}

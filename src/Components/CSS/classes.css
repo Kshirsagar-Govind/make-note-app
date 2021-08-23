@@ -1,0 +1,13 @@
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.just-space {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.px-20 {
+  padding: 0px 20px;
+}

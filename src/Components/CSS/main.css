@@ -1,0 +1,14 @@
+@import url('./fonts.css');
+@import url('./comps.css');
+@import url('./classes.css');
+
+.main-nav-bar {
+  width: 100%;
+  margin-top: 30px;
+}
+.main-nav-bar > .d-flex > .brand {
+  margin: auto;
+}
+.dashboard {
+  padding: 0px 30px;
+}
