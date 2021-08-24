@@ -31,6 +31,14 @@
   background-color: var(--greyshade);
   width: 100%;
 }
+
+.hr-line-light {
+  margin: 15px 0px;
+  height: 0.5px;
+  background-color: var(--greyshade);
+  width: 100%;
+}
+
 .vr-line {
   margin: 15px 0px;
   height: inherit;
@@ -77,6 +85,11 @@
   padding: 0px 10px;
   color: var(--greyshade);
 }
+.checkbox-class {
+  width: 2rem;
+  height: 2rem;
+  margin: 0rem 1rem;
+}
 .submit-div {
   display: flex;
   justify-content: center;
@@ -95,6 +108,27 @@
 .button_1:hover {
   filter: brightness(90%);
 }
+
+.button_2 {
+  min-width: 100px;
+  width: fit-content;
+  background-color: var(--pure);
+  outline: none;
+  border: 2px solid var(--primary);
+  height: 40px;
+  color: var(--primary);
+  padding: 0px 20px;
+  cursor: pointer;
+}
+.button_2:hover {
+  filter: brightness(90%);
+}
+.cancel_button {
+  color: var(--primary);
+
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
 }

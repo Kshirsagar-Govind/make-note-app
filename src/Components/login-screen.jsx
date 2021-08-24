@@ -27,10 +27,9 @@ const LoginPage = () => {
               <input
                 {...register("email", { required: true })}
                 type="text"
-                className="input-class san-24-bold"
+                className="input-class san-18-bold"
               />
             </div>
-
             <div className="input-div">
               <label htmlFor="password" className="input-label san-24-light">
                 Password
@@ -38,26 +37,40 @@ const LoginPage = () => {
               <input
                 {...register("password", { required: true })}
                 type="text"
-                className="input-class san-24-bold"
+                className="input-class san-18-bold"
               />
             </div>
+            <div className="input-div">
+              <label htmlFor="c_password" className="input-label san-24-light">
+                Remember Me
+              </label>
+
+              <input
+                {...register("c_password", { required: true })}
+                type="checkbox"
+                className="checkbox-class san-24-bold"
+              />
+            </div>
+            <br /> <br />
             <div className="submit-div">
               <input
-                className="button_1 san-24-bold"
+                className="button_1 san-24-light"
                 type="submit"
                 value="Login"
               />
             </div>
+            <br /> <br />
+            <div className="hr-line-light" />
+            <div className="just-center">
+              <h4 className="san-16-bold">
+                Need New Account
+                <a href="/registration-page" className="san-18-bold primary">
+                  {" "}
+                  Signup
+                </a>
+              </h4>
+            </div>
           </form>
-          <div className="">
-            <h4 className="san-18-bold">
-              Need New Account
-              <a href="" className="san-18-bold">
-                {" "}
-                Signup
-              </a>
-            </h4>
-          </div>
         </div>
       </div>
     </div>

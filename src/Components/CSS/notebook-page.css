@@ -2,11 +2,13 @@
   position: relative;
 }
 .side-menu {
+  position: relative;
   width: 300px;
   height: 100vh;
   box-shadow: 4px 0px 10px rgba(155, 0, 107, 0.12);
   background-color: var(--light_primary);
 }
+
 .brand {
   margin: auto;
   margin-top: 20px;
@@ -29,6 +31,7 @@
   color: black;
 }
 .active-menu {
+  position: relative;
   background-color: var(--pure);
   color: var(--primary);
   width: 95%;
@@ -37,6 +40,12 @@
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   box-shadow: -0px 5px 8px rgba(0, 0, 0, 0.1);
+}
+.side-menu > .side-menu-footer {
+  position: absolute;
+  width: 100px;
+  bottom: 0;
+  padding: 2rem 35%;
 }
 .right-view-section {
   padding: 25px 40px;

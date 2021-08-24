@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.d-flex-ac {
+  display: flex;
+  align-items: center;
+}
 .just-space {
   display: flex;
   align-items: center;
@@ -12,6 +16,12 @@
   align-items: center;
   justify-content: center;
 }
+.just-base {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+}
+
 .px-20 {
   padding: 0px 20px;
 }
@@ -20,4 +30,7 @@
 }
 .pxy-30 {
   padding: 30px;
+}
+.mxy-30 {
+  margin: 30px;
 }

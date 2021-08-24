@@ -12,6 +12,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { RenameNotebookPopup, DeleteNote, AddNotebook } from "./Components/Containers/popups";
 
 
 function App() {
@@ -19,27 +20,17 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/" component={HomeScreen} exact />
+
+          <Route path="/" component={NotebookPage} exact />
           <Route path="/login-page" component={LoginPage} exact />
           <Route path="/registration-page" component={RegistrationPage} exact />
           <Route path="/profile-page" component={UserProfile} exact />
-          <Route path="/notebooks-page" component={NotebookPage} exact />
           <Route path="/note-page" component={NotePage} exact />
-
-
-
-
-
-
-
         </Switch>
       </Router>
-      {/* <UserProfile /> */}
-      {/* <LoginPage /> */}
-      {/* <RegistrationPage /> */}
-      {/* <NotePage /> */}
-      {/* <NotebookPage /> */}
-      {/* <HomeScreen />s */}
+      {/* <AddNotebook /> */}
+
+
     </div>
   );
 }

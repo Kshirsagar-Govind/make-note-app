@@ -1,0 +1,24 @@
+ axios
+      .post('http://localhost:8000/logIn', {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        const users = response.data
+          dispatch(loginSuccess(users))
+          localStorage.setItem('jwt', users.auth_token)
+          localStorage.setItem('user', JSON.stringify(users))
+          console.log('users', users) // undefined
+    })
+      .catch((error) => {
+        dispatch(fetchLoginFailure(error.message))
+      })
+and access inside your logout component or wherever you need that
+
+let userDetails = JSON.parse(localStorage.getItem('user'));
+and clear it inside logout function
+
+const logoutOnClick = () => {
+        dispatch(logout())
+        localStorage.clear() // already clearing
+    }

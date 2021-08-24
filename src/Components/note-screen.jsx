@@ -8,7 +8,7 @@ class NotePage extends Component {
     return (
       <div id="note-page" className="page">
         <div className="note-header just-space">
-          <Link to="/notebooks-page">
+          <Link to="/">
             <img src={BackLogo} alt="" />
           </Link>
 

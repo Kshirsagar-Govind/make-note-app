@@ -29,10 +29,9 @@ const RegistrationPage = () => {
               <input
                 type="text"
                 {...register("username", { required: true })}
-                className="input-class san-24-bold"
+                className="input-class san-18-bold"
               />
             </div>
-
             <div className="input-div">
               <label htmlFor="email" className="input-label san-24-light">
                 Email
@@ -41,10 +40,9 @@ const RegistrationPage = () => {
               <input
                 {...register("s_email", { required: true })}
                 type="text"
-                className="input-class san-24-bold"
+                className="input-class san-18-bold"
               />
             </div>
-
             <div className="input-div">
               <label htmlFor="password" className="input-label san-24-light">
                 Password
@@ -53,10 +51,9 @@ const RegistrationPage = () => {
               <input
                 {...register("s_password", { required: true })}
                 type="text"
-                className="input-class san-24-bold"
+                className="input-class san-18-bold"
               />
             </div>
-
             <div className="input-div">
               <label htmlFor="c_password" className="input-label san-24-light">
                 Confirm Password
@@ -65,21 +62,25 @@ const RegistrationPage = () => {
               <input
                 {...register("c_password", { required: true })}
                 type="text"
-                className="input-class san-24-bold"
+                className="input-class san-18-bold"
               />
             </div>
+            <br /> <br />
             <div className="submit-div">
               <input
                 type="submit"
-                className="button_1 san-24-bold"
+                className="button_1 san-24-light"
                 value="Sign Up"
               />
             </div>
-          </form>
-          <div className="">
-            <h4 className="san-18-bold">
+          </form>{" "}
+          <br />
+          <br />
+          <div className="hr-line-light" />
+          <div className="just-center">
+            <h4 className="san-16-bold">
               Already a user
-              <a href="" className="san-18-bold">
+              <a href="/login-page" className="san-18-bold primary">
                 {" "}
                 Login
               </a>
