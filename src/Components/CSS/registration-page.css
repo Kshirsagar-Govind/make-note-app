@@ -1,0 +1,15 @@
+#registration-page > .sinup-n-login {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+#user-profile-page {
+  padding: 30px;
+}
+.user-data-div {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 40px;
+  padding: 30px;
+}

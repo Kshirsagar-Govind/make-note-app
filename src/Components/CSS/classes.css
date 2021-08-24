@@ -7,9 +7,17 @@
   align-items: center;
   justify-content: space-between;
 }
+.just-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .px-20 {
   padding: 0px 20px;
 }
 .col-center {
   text-align: center;
+}
+.pxy-30 {
+  padding: 30px;
 }

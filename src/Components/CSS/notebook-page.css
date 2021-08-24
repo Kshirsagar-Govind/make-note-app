@@ -7,7 +7,7 @@
   box-shadow: 4px 0px 10px rgba(155, 0, 107, 0.12);
   background-color: var(--light_primary);
 }
-.side-menu > .brand {
+.brand {
   margin: auto;
   margin-top: 20px;
 }

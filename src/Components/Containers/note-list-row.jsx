@@ -11,7 +11,7 @@ class NoteBookRow extends Component {
       <div>
         <div class="note-item">
           <div class="just-space">
-            <h3 class="san-36-regular">1. First Notebook</h3>
+            <h3 class="san-36-regular grey">1. First Notebook</h3>
             <div class="d-flex">
               <img class="px-20" src={DeleteLogo} alt="" />
               <img src={EditLogo} alt="" />

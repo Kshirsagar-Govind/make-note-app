@@ -13,12 +13,32 @@ html {
   font-size: 62.5%;
 }
 
+.page {
+  animation: page_anim 0.2s linear;
+}
+@keyframes page_anim {
+  0% {
+    transform: translateX(50px);
+  }
+  70% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
 .home-page {
-  margin-top: 30px;
+  padding: 30px;
 }
 .main-nav-bar > .d-flex > .brand {
   margin: auto;
 }
 .dashboard {
   padding: 0px 30px;
+}
+
+Link,
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
 }
