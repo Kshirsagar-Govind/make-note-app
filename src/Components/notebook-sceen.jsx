@@ -10,7 +10,7 @@ import UserLogo from "./Assets/SVG/user-logo.svg";
 
 import { Link } from "react-router-dom";
 import "./CSS/main.css";
-import { AddNotebook } from "./Containers/popups";
+import { AddNotebook, DeleteNotebook, RenameNote } from "./Containers/popups";
 
 class NotebookPage extends Component {
   constructor(props) {
@@ -18,6 +18,8 @@ class NotebookPage extends Component {
     this.state = {
       toggle: false,
       showNewNotebook: false,
+      showDeleteNotebook: false,
+      showRenameNotebook: false,
     };
   }
 
@@ -48,7 +50,15 @@ class NotebookPage extends Component {
                 <li class="san-24-bold menu">First Notebook</li>
                 <li class="san-24-bold menu">First Notebook</li>
                 <li className="just-center">
-                  <img src={AddLogo} alt="" />
+                  <img
+                    onClick={() => {
+                      this.setState({
+                        showNewNotebook: !this.state.showNewNotebook,
+                      });
+                    }}
+                    src={AddLogo}
+                    alt=""
+                  />
                 </li>
               </ul>
             </div>
@@ -75,10 +85,26 @@ class NotebookPage extends Component {
         </div>
         <div id="option-popup">
           <ul>
-            <li className="san-18-bold">
+            <li
+              className="san-18-bold"
+              onClick={() => {
+                this.showOptions();
+                this.setState({
+                  showRenameNotebook: !this.state.showRenameNotebook,
+                });
+              }}
+            >
               <img src={EditLogo} alt="" /> Rename{" "}
             </li>
-            <li className="san-18-bold">
+            <li
+              className="san-18-bold"
+              onClick={() => {
+                this.showOptions();
+                this.setState({
+                  showDeleteNotebook: !this.state.showDeleteNotebook,
+                });
+              }}
+            >
               <img src={DeleteLogo} alt="" />Delete{" "}
             </li>
             <li
@@ -96,7 +122,60 @@ class NotebookPage extends Component {
           </ul>
         </div>
         {/* <AddNotebook /> */}
-        {this.state.showNewNotebook ? <AddNotebook /> : ""}
+        {this.state.showNewNotebook ? (
+          <div className="back_popup">
+            <div className="edit-popup-div">
+              <div
+                className="cross"
+                onClick={() => {
+                  this.setState({
+                    showNewNotebook: !this.state.showNewNotebook,
+                  });
+                }}
+              >
+                <h1>X</h1>
+              </div>
+
+              <AddNotebook />
+            </div>
+          </div>
+        ) : this.state.showDeleteNotebook ? (
+          <div className="back_popup">
+            <div className="edit-popup-div">
+              <div
+                className="cross"
+                onClick={() => {
+                  this.setState({
+                    showDeleteNotebook: !this.state.showDeleteNotebook,
+                  });
+                }}
+              >
+                <h1>X</h1>
+              </div>
+
+              <DeleteNotebook />
+            </div>
+          </div>
+        ) : this.state.showRenameNotebook ? (
+          <div className="back_popup">
+            <div className="edit-popup-div">
+              <div
+                className="cross"
+                onClick={() => {
+                  this.setState({
+                    showRenameNotebook: !this.state.showRenameNotebook,
+                  });
+                }}
+              >
+                <h1>X</h1>
+              </div>
+
+              <RenameNote />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

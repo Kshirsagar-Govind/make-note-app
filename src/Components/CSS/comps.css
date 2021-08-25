@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@100;200;300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Syncopate', sans-serif;
+}
 :root {
   --primary: #ff006b;
   --pure: #ffffff;
@@ -131,4 +136,30 @@
 
 a {
   text-decoration: none;
+}
+.cross {
+  z-index: 10;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 3rem;
+  height: 3rem;
+
+  background-color: var(--primary);
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 1;
+  font-family: 'Syncopate', sans-serif;
+  transition: 0.2s;
+}
+
+.cross h1 {
+  font-family: 'Syncopate', sans-serif;
+  margin: 0.5rem 0;
+  font-weight: lighter;
+  color: var(--pure);
+}
+.cross:hover {
+  filter: brightness(90%);
 }

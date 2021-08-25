@@ -34,3 +34,7 @@
 .mxy-30 {
   margin: 30px;
 }
+.right-align {
+  position: relative;
+  display: flex;
+}

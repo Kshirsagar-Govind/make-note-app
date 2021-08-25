@@ -26,15 +26,7 @@ export const AddNotebook = ({ user_id }) => {
             className="popup-input-class san-16-light"
           />
         </div>
-        <div className="submit-div d-flex-ac">
-          <h3
-            className="mxy-30 san-16-bold cancel_button"
-            onClick={() => {
-              document.getElementById("edit-popup").style.display = "none";
-            }}
-          >
-            Cancel
-          </h3>
+        <div className="submit-div">
           <input
             type="submit"
             className="button_1 mxy-30 san-16-bold"
@@ -83,7 +75,6 @@ export class DeleteNotebook extends Component {
           </label>
         </div>
         <div className="submit-div d-flex-ac">
-          <h3 className="mxy-30 san-16-bold primary">Cancel</h3>
           <button className="button_1 mxy-30 san-16-bold">Delete</button>
         </div>
       </div>
@@ -99,15 +90,14 @@ export class RenameNote extends Component {
   render() {
     return (
       <div id="edit-popup">
-        <div className="input-div">
-          <label htmlFor="Name" className="popup-input-label san-18-bold">
-            New name
-          </label>
-          <input type="text" className="popup-input-class san-16-light" />
-        </div>
-        <div className="submit-div d-flex-ac">
-          <h3 className="mxy-30 san-16-bold primary">Cancel</h3>
-          <button className="button_1 mxy-30 san-16-bold">Done</button>
+        <h1 className="san-24-bold primary">Rename Notebook</h1> <br />
+        <label htmlFor="Name" className="popup-input-label san-18-bold">
+          New name
+        </label>
+        <input type="text" className="popup-input-class san-16-light" />
+        <div className="submit-div">
+          {/* <h3 className="mxy-30 san-16-bold primary">Cancel</h3> */}
+          <button className="button_1 mxy-30 san-16-bold">Rename</button>
         </div>
       </div>
     );

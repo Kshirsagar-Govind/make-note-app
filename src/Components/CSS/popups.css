@@ -1,3 +1,22 @@
+.back_popup {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: backpopup 0.2s linear;
+}
+@keyframes backpopup {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 #option-popup {
   display: none;
   position: absolute;
@@ -29,14 +48,19 @@
   color: var(--primary);
   filter: brightness(80%);
 }
-#edit-popup {
+.edit-popup-div {
   position: absolute;
+  width: 50rem;
+  height: fit-content;
   top: 25%;
   left: 35%;
-  width: 50rem;
+}
+#edit-popup {
+  position: relative;
+  width: inherit;
   padding: 3rem 0rem 0rem 3rem;
-  height: fit-content;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  height: inherit;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
   background-color: var(--pure);
 }
