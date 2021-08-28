@@ -101,14 +101,14 @@ body {
 }
 .button_1 {
   min-width: 100px;
-  width: fit-content;
+  width: inherit;
   background-color: var(--primary);
   outline: none;
   border: none;
   height: 40px;
   color: var(--pure);
-  padding: 0px 20px;
   cursor: pointer;
+  border-radius: 8px;
 }
 .button_1:hover {
   filter: brightness(90%);

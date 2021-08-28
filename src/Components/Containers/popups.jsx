@@ -26,12 +26,9 @@ export const AddNotebook = ({ user_id }) => {
             className="popup-input-class san-16-light"
           />
         </div>
-        <div className="submit-div">
-          <input
-            type="submit"
-            className="button_1 mxy-30 san-16-bold"
-            value="Add"
-          />
+
+        <div className="button_wrapper">
+          <input type="submit" className="button_1 san-16-bold" value="Add" />
         </div>
       </form>
     </div>
@@ -74,8 +71,10 @@ export class DeleteNotebook extends Component {
             Delete this notebook permanently?
           </label>
         </div>
-        <div className="submit-div d-flex-ac">
-          <button className="button_1 mxy-30 san-16-bold">Delete</button>
+        <div className="">
+          <div className="button_wrapper">
+            <button className="button_1 san-16-bold">Delete</button>
+          </div>
         </div>
       </div>
     );
@@ -95,9 +94,10 @@ export class RenameNote extends Component {
           New name
         </label>
         <input type="text" className="popup-input-class san-16-light" />
-        <div className="submit-div">
-          {/* <h3 className="mxy-30 san-16-bold primary">Cancel</h3> */}
-          <button className="button_1 mxy-30 san-16-bold">Rename</button>
+        <div className="">
+          <div className="button_wrapper">
+            <button className="button_1 san-16-bold">Rename</button>
+          </div>
         </div>
       </div>
     );
