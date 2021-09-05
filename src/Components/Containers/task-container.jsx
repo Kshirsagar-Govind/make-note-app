@@ -9,6 +9,8 @@ import { DeleteNote } from "./popups";
 
 const TaskContainer = ({ note, notebook_id }) => {
   const [ showDeleteNote, setShowDeleteNote ] = useState(false);
+  const [ showNoteProperties, setShowNoteProperties ] = useState(false);
+
   return (
     <div id="task-container">
       <div className="task-card">
@@ -27,7 +29,13 @@ const TaskContainer = ({ note, notebook_id }) => {
             }}
           />
           <img src={EditLogo} alt="" />
-          <img src={PropsLogo} alt="" />
+          <img
+            src={PropsLogo}
+            alt=""
+            onClick={() => {
+              setShowNoteProperties(true);
+            }}
+          />
           <Link to="/note-page">
             <img src={OpenLogo} alt="" />
           </Link>
@@ -46,6 +54,47 @@ const TaskContainer = ({ note, notebook_id }) => {
             </div>
 
             <DeleteNote note_id={note.note_id} notebook_id={notebook_id} />
+          </div>
+        </div>
+      ) : showNoteProperties ? (
+        <div className="back_popup">
+          <div className="edit-popup-div">
+            <div id="edit-popup">
+              <div className="input-div px-20">
+                <div className="just-space">
+                  <label htmlFor="Name" className="san-24-light">
+                    Note Tile
+                  </label>
+
+                  <label htmlFor="Name" className="san-24-regular">
+                    {note.note_title}
+                  </label>
+                </div>
+              </div>
+              <div className="input-div px-20">
+                <div className="just-space">
+                  <label htmlFor="Name" className="san-24-light">
+                    Created On
+                  </label>
+
+                  <label htmlFor="Name" className="san-20-regular">
+                    {note.created_date ? note.created_date : "dd/mm/yyyy"}
+                  </label>
+                </div>
+              </div>
+              <div className="">
+                <div className="button_wrapper">
+                  <button
+                    className="button_1 san-16-bold"
+                    onClick={() => {
+                      setShowNoteProperties(false);
+                    }}
+                  >
+                    OK
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       ) : (

@@ -49,8 +49,8 @@ const RegistrationPage = () => {
               </label>
 
               <input
-                {...register("s_password", { required: true })}
-                type="text"
+                {...register("password", { required: true })}
+                type="password"
                 className="input-class san-18-bold"
               />
             </div>
@@ -61,7 +61,7 @@ const RegistrationPage = () => {
 
               <input
                 {...register("c_password", { required: true })}
-                type="text"
+                type="password"
                 className="input-class san-18-bold"
               />
             </div>
@@ -69,7 +69,7 @@ const RegistrationPage = () => {
             <div className="submit-div">
               <input
                 type="submit"
-                className="button_1 san-24-light"
+                className="button_1 san-24-light  px-20"
                 value="Sign Up"
               />
             </div>

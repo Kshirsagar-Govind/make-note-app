@@ -36,7 +36,7 @@ const LoginPage = () => {
               </label>
               <input
                 {...register("password", { required: true })}
-                type="text"
+                type="password"
                 className="input-class san-18-bold"
               />
             </div>

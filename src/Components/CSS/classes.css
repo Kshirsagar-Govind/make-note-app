@@ -35,13 +35,26 @@
   padding: 30px 0px;
 }
 
+.px-30 {
+  padding: 0px 30px;
+}
+
 .py-20 {
   padding: 20px 0px;
+}
+
+.px-20 {
+  padding: 0px 20px;
 }
 
 .py-10 {
   padding: 10px 0px;
 }
+
+.px-10 {
+  padding: 0px 10px;
+}
+
 .mxy-30 {
   margin: 30px;
 }
