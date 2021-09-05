@@ -1,35 +1,58 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import DeleteLogo from "../Assets/SVG/delete-task-logo.svg";
+import { Link } from "react-router-dom";
 
 import EditLogo from "../Assets/SVG/edit-task-logo.svg";
 import PropsLogo from "../Assets/SVG/task-props-logo.svg";
 import OpenLogo from "../Assets/SVG/open-file-logo.svg";
+import { DeleteNote } from "./popups";
 
-class TaskContainer extends Component {
-  render() {
-    return (
-      <div id="task-container">
-        <div className="task-card">
-          <div className="task-header">
-            <h1 className="task-name san-28-bold">Task 1</h1>
+const TaskContainer = ({ note, notebook_id }) => {
+  const [ showDeleteNote, setShowDeleteNote ] = useState(false);
+  return (
+    <div id="task-container">
+      <div className="task-card">
+        <div className="task-header">
+          <h1 className="task-name san-28-bold">{note.note_title}</h1>
 
-            <p className="task-description rob-14-normal">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Dignissimos nemo accusamus sed cum quasi modi ipsam expedita
-              perferendis earum illo!
-            </p>
-          </div>
+          <p className="task-description rob-14-normal">{note.note_desc}</p>
+        </div>
 
-          <div className="options just-space">
-            <img src={DeleteLogo} alt="" />
-            <img src={EditLogo} alt="" />
-            <img src={PropsLogo} alt="" />
+        <div className="options just-space">
+          <img
+            src={DeleteLogo}
+            alt=""
+            onClick={() => {
+              setShowDeleteNote(true);
+            }}
+          />
+          <img src={EditLogo} alt="" />
+          <img src={PropsLogo} alt="" />
+          <Link to="/note-page">
             <img src={OpenLogo} alt="" />
-          </div>
+          </Link>
         </div>
       </div>
-    );
-  }
-}
+      {showDeleteNote ? (
+        <div className="back_popup">
+          <div className="edit-popup-div">
+            <div
+              className="cross"
+              onClick={() => {
+                setShowDeleteNote(false);
+              }}
+            >
+              <h1>X</h1>
+            </div>
+
+            <DeleteNote note_id={note.note_id} notebook_id={notebook_id} />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
+  );
+};
 
 export default TaskContainer;

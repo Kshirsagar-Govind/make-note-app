@@ -29,6 +29,7 @@ export const AddNotebook = ({ user_id }) => {
           </label>
           <input
             type="text"
+            maxlength="18"
             {...register("notebook_title", { required: true })}
             className="popup-input-class san-16-light"
           />
@@ -63,6 +64,7 @@ export const RenameNotebook = ({ user_id, notebook_id }) => {
         </label>
         <input
           type="text"
+          maxlength="18"
           {...register("notebook_title", { required: true })}
           className="popup-input-class san-16-light"
         />
@@ -85,7 +87,7 @@ export const DeleteNotebook = ({ notebook_id }) => {
     const res = await axios.post(
       `http://localhost:6500/notebook/delete-notebook/${notebook_id}`
     );
-    alert("Notebook Deleted Success !");
+    alert("Notebook Deleted Successfully !");
   };
   return (
     <div id="edit-popup">
@@ -101,6 +103,61 @@ export const DeleteNotebook = ({ notebook_id }) => {
           </button>
         </div>
       </div>
+    </div>
+  );
+};
+
+export const AddNote = ({ notebook_id }) => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+  const submit = async data => {
+    console.log(data);
+    const res = await axios.post(
+      `http://localhost:6500/notebook/create-note/${notebook_id}`,
+      data
+    );
+    console.log(res);
+    alert(`New notebook ${data.note_title} Added !`);
+  };
+
+  return (
+    <div id="edit-popup">
+      <h3 className="san-24-bold primary">Add New Note</h3>
+
+      <form onSubmit={handleSubmit(submit)}>
+        <div className="input-div">
+          <label
+            htmlFor="notebook_title"
+            className="popup-input-label san-18-bold"
+          >
+            Name
+          </label>
+          <input
+            type="text"
+            maxlength="18"
+            {...register("note_title", { required: true })}
+            className="popup-input-class san-16-light"
+          />
+        </div>
+
+        <div className="input-div">
+          <label
+            htmlFor="notebook_title"
+            className="popup-input-label san-18-bold"
+          >
+            Description
+          </label>
+          <input
+            type="text"
+            {...register("note_desc", { required: true })}
+            className="popup-input-class san-16-light"
+          />
+        </div>
+
+        <div className="button_wrapper">
+          <input type="submit" className="button_1 san-16-bold" value="Add" />
+        </div>
+      </form>
     </div>
   );
 };
@@ -121,6 +178,7 @@ export const RenameNote = ({ user_id, notebook_id }) => {
         <div className="">
           <div className="button_wrapper">
             <input
+              maxlength="18"
               className="button_1 san-16-bold"
               type="submit"
               value="Rename"
@@ -132,24 +190,28 @@ export const RenameNote = ({ user_id, notebook_id }) => {
   );
 };
 
-export class DeleteNote extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div id="edit-popup">
-        <div className="input-div">
-          <label htmlFor="Name" className="san-24-light">
-            Delete this note permanently?
-          </label>
-        </div>
-        <div className="submit-div d-flex-ac">
-          <h3 className="mxy-30 san-16-bold primary">Cancel</h3>
-          <button className="button_1 mxy-30 san-16-bold">Delete</button>
+export const DeleteNote = ({ note_id, notebook_id }) => {
+  const deleteNote = async () => {
+    console.log(note_id, notebook_id);
+    await axios.post(
+      `http://localhost:6500/notebook/delete-note/${notebook_id}/${note_id}`
+    );
+    alert("Note Deleted successfully !");
+  };
+  return (
+    <div id="edit-popup">
+      <div className="input-div">
+        <label htmlFor="Name" className="san-24-light">
+          Delete this note permanently?
+        </label>
+      </div>
+      <div className="">
+        <div className="button_wrapper">
+          <button className="button_1 san-16-bold" onClick={deleteNote}>
+            Delete
+          </button>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

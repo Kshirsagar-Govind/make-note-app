@@ -12,7 +12,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./CSS/main.css";
 import {
+  AddNote,
   AddNotebook,
+  DeleteNote,
   DeleteNotebook,
   RenameNote,
   RenameNotebook,
@@ -26,9 +28,14 @@ class NotebookPage extends Component {
       selectedNotebook_id: "",
       toggle: false,
       showNewNotebook: false,
+      showNewNote: false,
+
       showDeleteNotebook: false,
+
       showRenameNotebook: false,
+
       allNotebooks: [],
+      allNotes: [],
       selected: 0,
     };
   }
@@ -46,6 +53,7 @@ class NotebookPage extends Component {
       allNotebooks: await allNotebooksData,
       selectedNotebook: allNotebooksData[0].notebook_title,
       selectedNotebook_id: allNotebooksData[0].notebook_id,
+      allNotes: allNotebooksData[0].notes,
     });
   }
 
@@ -76,28 +84,23 @@ class NotebookPage extends Component {
 
             <div className="menus">
               <ul>
-                {this.state.allNotebooks.length > 0 ? (
-                  this.state.allNotebooks.map((item, index) => (
-                    <li
-                      onClick={() => {
-                        this.setState({
-                          selected: index,
-                          selectedNotebook: item.notebook_title,
-                          selectedNotebook_id: item.notebook_id,
-                        });
-                      }}
-                      class={
-                        index == this.state.selected ? "active-menu" : "menu"
-                      }
-                    >
-                      <h3 className="san-20-bold py-10">
-                        {item.notebook_title}
-                      </h3>
-                    </li>
-                  ))
-                ) : (
-                  console.log("error")
-                )}
+                {this.state.allNotebooks.map((item, index) => (
+                  <li
+                    onClick={() => {
+                      this.setState({
+                        selected: index,
+                        selectedNotebook: item.notebook_title,
+                        selectedNotebook_id: item.notebook_id,
+                        allNotes: item.notes,
+                      });
+                    }}
+                    class={
+                      index == this.state.selected ? "active-menu" : "menu"
+                    }
+                  >
+                    <h3 className="san-20-bold py-10">{item.notebook_title}</h3>
+                  </li>
+                ))}
               </ul>
               <li className="just-center">
                 <img
@@ -123,14 +126,26 @@ class NotebookPage extends Component {
               <img src={DotsLogo} alt="" onClick={this.showOptions} />
             </div>
             <div className="note-card">
-              <Link to="/note-page">
-                <TaskContainer />
-              </Link>
+              {this.state.allNotes.map((item, index) => (
+                <TaskContainer
+                  note={item}
+                  notebook_id={this.state.selectedNotebook_id}
+                />
+              ))}
 
-              <img src={NewFile} alt="" />
+              <img
+                src={NewFile}
+                alt=""
+                onClick={() => {
+                  this.setState({
+                    showNewNote: true,
+                  });
+                }}
+              />
             </div>
           </div>
         </div>
+        {/* Notebok Options Popup ------------>>>> */}
         <div id="option-popup">
           <ul>
             <li
@@ -169,6 +184,7 @@ class NotebookPage extends Component {
             </li>
           </ul>
         </div>
+        {/* ------------------------------------------------ */}
         {/* <AddNotebook /> */}
         {this.state.showNewNotebook ? (
           <div className="back_popup">
@@ -219,6 +235,22 @@ class NotebookPage extends Component {
               </div>
 
               <RenameNotebook notebook_id={this.state.selectedNotebook_id} />
+            </div>
+          </div>
+        ) : this.state.showNewNote ? (
+          <div className="back_popup">
+            <div className="edit-popup-div">
+              <div
+                className="cross"
+                onClick={() => {
+                  this.setState({
+                    showNewNote: !this.state.showNewNote,
+                  });
+                }}
+              >
+                <h1>X</h1>
+              </div>
+              <AddNote notebook_id={this.state.selectedNotebook_id} />
             </div>
           </div>
         ) : (
