@@ -31,6 +31,17 @@
 .pxy-30 {
   padding: 30px;
 }
+.py-30 {
+  padding: 30px 0px;
+}
+
+.py-20 {
+  padding: 20px 0px;
+}
+
+.py-10 {
+  padding: 10px 0px;
+}
 .mxy-30 {
   margin: 30px;
 }

@@ -16,10 +16,16 @@
 .menus {
   margin-top: 50px;
   width: inherit;
+  max-height: 500px;
+}
+
+.menus > ul {
+  overflow-y: scroll;
+  max-height: 450px;
 }
 
 .menus > ul > li {
-  padding: 5px 60px;
+  padding: 5px 30px;
   margin: 10px 0px;
   cursor: pointer;
 }
@@ -34,8 +40,8 @@
   position: relative;
   background-color: var(--pure);
   color: var(--primary);
-  width: 95%;
-  height: 40px;
+  width: 98%;
+  height: fit-content;
   list-style: none;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
