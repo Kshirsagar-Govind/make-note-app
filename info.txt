@@ -22,3 +22,46 @@ const logoutOnClick = () => {
         dispatch(logout())
         localStorage.clear() // already clearing
     }
+
+    db.collection.update(
+  { "_id": ObjectId(5b56bd2f3e18580edc85af73) },
+  { "$push": { "Cards.$[card].comments.$[comment].attachments": "2" } },
+  { "arrayFilters": [
+    { "card.cardID": ObjectId("5b56c895d0a04836f71aa776")},
+    {"comment.commentId": 2 }
+    ]
+  }
+)
+
+   db.collection.update(
+  { "_id": ObjectId(5b56bd2f3e18580edc85af73) },
+  { "$set": { "Notebooks.$[notebook].cnotes.$[nt].note": "saved data" } },
+  { "arrayFilters": [
+    { "notebook.notebook_id": ObjectId("5b56c895d0a04836f71aa776")},
+    {"nt.note_id": 2 }
+    ]
+  }
+
+
+
+Profiles.update({_id : req.body.id},
+    {
+        $set: {
+
+            'albums.$[i].images.$[j].title': req.body.new_name
+        }
+    },
+    {
+        arrayFilters: [
+            {
+                "i.tour_name": req.body.tour_name, "j.image": req.body.new_name  
+                 // tour_name -  current tour name,  new_name - new tour name 
+            }]
+    })
+    .then(function (resp) {
+        console.log(resp)
+        res.json({status: 'success', resp});
+    }).catch(function (err) {
+    console.log(err);
+    res.status(500).json('Failed');
+})

@@ -3,7 +3,7 @@ import TaskContainer from "./Components/Containers/task-container";
 import HomeScreen from "./Components/home-screen";
 import LoginPage from "./Components/login-screen";
 import NotePage from "./Components/note-screen";
-import NotebookPage from "./Components/notebook-sceen";
+import NotebookPage from "./Components/notebook-screen";
 import RegistrationPage from "./Components/registration-screen";
 import UserProfile from "./Components/user-profile-screen";
 import {
@@ -25,7 +25,7 @@ function App() {
           <Route path="/login-page" component={LoginPage} exact />
           <Route path="/registration-page" component={RegistrationPage} exact />
           <Route path="/profile-page" component={UserProfile} exact />
-          <Route path="/note-page" component={NotePage} exact />
+          <Route path="/note-page/:note/:notebook_id/:note_id" component={NotePage} exact />
         </Switch>
       </Router>
       {/* <AddNotebook /> */}

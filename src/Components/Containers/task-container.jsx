@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import DeleteLogo from "../Assets/SVG/delete-task-logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import EditLogo from "../Assets/SVG/edit-task-logo.svg";
 import PropsLogo from "../Assets/SVG/task-props-logo.svg";
@@ -10,7 +10,10 @@ import { DeleteNote } from "./popups";
 const TaskContainer = ({ note, notebook_id }) => {
   const [ showDeleteNote, setShowDeleteNote ] = useState(false);
   const [ showNoteProperties, setShowNoteProperties ] = useState(false);
-
+  const history = useHistory();
+  const closePopup = () => {
+    setShowDeleteNote(false);
+  };
   return (
     <div id="task-container">
       <div className="task-card">
@@ -36,9 +39,16 @@ const TaskContainer = ({ note, notebook_id }) => {
               setShowNoteProperties(true);
             }}
           />
-          <Link to="/note-page">
-            <img src={OpenLogo} alt="" />
-          </Link>
+
+          <img
+            src={OpenLogo}
+            alt=""
+            onClick={() => {
+              history.push(
+                `/note-page/${note.note}/${notebook_id}/${note.note_id}`
+              );
+            }}
+          />
         </div>
       </div>
       {showDeleteNote ? (
@@ -53,7 +63,11 @@ const TaskContainer = ({ note, notebook_id }) => {
               <h1>X</h1>
             </div>
 
-            <DeleteNote note_id={note.note_id} notebook_id={notebook_id} />
+            <DeleteNote
+              closePopup={closePopup}
+              note_id={note.note_id}
+              notebook_id={notebook_id}
+            />
           </div>
         </div>
       ) : showNoteProperties ? (

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
-export const AddNotebook = ({ user_id }) => {
+export const AddNotebook = ({ user_id, closePopup }) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const submit = async data => {
@@ -12,11 +12,14 @@ export const AddNotebook = ({ user_id }) => {
       data
     );
     console.log(res);
-    alert(`New notebook ${data.notebook_title} Added !`);
+    closePopup();
   };
 
   return (
     <div id="edit-popup">
+      <div className="cross" onClick={closePopup}>
+        <h1>X</h1>
+      </div>
       <h3 className="san-24-bold primary">Add New Notebook</h3>
 
       <form onSubmit={handleSubmit(submit)}>
@@ -43,7 +46,7 @@ export const AddNotebook = ({ user_id }) => {
   );
 };
 
-export const RenameNotebook = ({ user_id, notebook_id }) => {
+export const RenameNotebook = ({ user_id, notebook_id, closePopup }) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = async data => {
@@ -52,11 +55,14 @@ export const RenameNotebook = ({ user_id, notebook_id }) => {
       data
     );
 
-    alert("Notebook Renamed Success !");
+    closePopup();
   };
 
   return (
     <div id="edit-popup">
+      <div className="cross" onClick={closePopup}>
+        <h1>X</h1>
+      </div>
       <h1 className="san-24-bold primary">Rename Notebook</h1> <br />
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="Name" className="popup-input-label san-18-bold">
@@ -82,15 +88,18 @@ export const RenameNotebook = ({ user_id, notebook_id }) => {
   );
 };
 
-export const DeleteNotebook = ({ notebook_id }) => {
+export const DeleteNotebook = ({ notebook_id, closePopup }) => {
   const deleteNotebook = async () => {
     const res = await axios.post(
       `http://localhost:6500/notebook/delete-notebook/${notebook_id}`
     );
-    alert("Notebook Deleted Successfully !");
+    closePopup();
   };
   return (
     <div id="edit-popup">
+      <div className="cross" onClick={closePopup}>
+        <h1>X</h1>
+      </div>
       <div className="input-div">
         <label htmlFor="Name" className="san-24-light">
           Delete this notebook permanently?
@@ -107,7 +116,7 @@ export const DeleteNotebook = ({ notebook_id }) => {
   );
 };
 
-export const AddNote = ({ notebook_id }) => {
+export const AddNote = ({ notebook_id, closePopup }) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const submit = async data => {
@@ -117,11 +126,15 @@ export const AddNote = ({ notebook_id }) => {
       data
     );
     console.log(res);
-    alert(`New notebook ${data.note_title} Added !`);
+
+    closePopup();
   };
 
   return (
     <div id="edit-popup">
+      <div className="cross" onClick={closePopup}>
+        <h1>X</h1>
+      </div>
       <h3 className="san-24-bold primary">Add New Note</h3>
 
       <form onSubmit={handleSubmit(submit)}>
@@ -162,13 +175,16 @@ export const AddNote = ({ notebook_id }) => {
   );
 };
 
-export const RenameNote = ({ user_id, notebook_id }) => {
+export const RenameNote = ({ user_id, notebook_id, closePopup }) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = async data => {};
 
   return (
     <div id="edit-popup">
+      <div className="cross" onClick={closePopup}>
+        <h1>X</h1>
+      </div>
       <h1 className="san-24-bold primary">Rename Note</h1> <br />
       <form onSubmit="">
         <label htmlFor="Name" className="popup-input-label san-18-bold">
@@ -190,16 +206,20 @@ export const RenameNote = ({ user_id, notebook_id }) => {
   );
 };
 
-export const DeleteNote = ({ note_id, notebook_id }) => {
+export const DeleteNote = ({ note_id, notebook_id, closePopup }) => {
   const deleteNote = async () => {
     console.log(note_id, notebook_id);
     await axios.post(
       `http://localhost:6500/notebook/delete-note/${notebook_id}/${note_id}`
     );
-    alert("Note Deleted successfully !");
+
+    closePopup();
   };
   return (
     <div id="edit-popup">
+      <div className="cross" onClick={closePopup}>
+        <h1>X</h1>
+      </div>
       <div className="input-div">
         <label htmlFor="Name" className="san-24-light">
           Delete this note permanently?

@@ -29,19 +29,17 @@ class NotebookPage extends Component {
       toggle: false,
       showNewNotebook: false,
       showNewNote: false,
-
       showDeleteNotebook: false,
-
       showRenameNotebook: false,
-
       allNotebooks: [],
       allNotes: [],
       selected: 0,
     };
   }
   componentDidMount() {
-    // this.props.getAllNotebooks("ID91447095");
-    this.getData();
+    this.props.getAllNotebooks("ID91447095");
+
+    console.log(this.props);
   }
   async getData() {
     const res = await fetch(
@@ -49,6 +47,7 @@ class NotebookPage extends Component {
     );
     const allNotebooksData = await res.json();
     console.log(allNotebooksData, "allNotebooksData");
+
     this.setState({
       allNotebooks: await allNotebooksData,
       selectedNotebook: allNotebooksData[0].notebook_title,
@@ -66,14 +65,38 @@ class NotebookPage extends Component {
       toggle: !this.state.toggle,
     });
   };
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.NotebooksData != nextProps.NotebooksData) {
+      console.log(nextProps.NotebooksData);
+      this.setState({
+        allNotebooks: nextProps.NotebooksData,
+        selectedNotebook: nextProps.NotebooksData[0].notebook_title,
+        selectedNotebook_id: nextProps.NotebooksData[0].notebook_id,
+        allNotes: nextProps.NotebooksData[0].notes,
+      });
+      return false;
+    }
+    return true;
+  }
+  componentDidUpdate() {}
+  closePopup = () => {
+    this.setState({
+      showNewNotebook: false,
+      showNewNote: false,
+      showDeleteNotebook: false,
+      showRenameNotebook: false,
+    });
+  };
   render() {
+    // console.log(this.state.allNotebooks);
     if (this.state.allNotebooks.length == 0) {
       return (
         <div className="">
-          <h1>Loading Data... wait</h1>
+          <h1>loading</h1>
         </div>
       );
     }
+
     return (
       <div id="notebook-page" className="page">
         <div className="d-flex">
@@ -84,23 +107,29 @@ class NotebookPage extends Component {
 
             <div className="menus">
               <ul>
-                {this.state.allNotebooks.map((item, index) => (
-                  <li
-                    onClick={() => {
-                      this.setState({
-                        selected: index,
-                        selectedNotebook: item.notebook_title,
-                        selectedNotebook_id: item.notebook_id,
-                        allNotes: item.notes,
-                      });
-                    }}
-                    class={
-                      index == this.state.selected ? "active-menu" : "menu"
-                    }
-                  >
-                    <h3 className="san-20-bold py-10">{item.notebook_title}</h3>
-                  </li>
-                ))}
+                {this.state.allNotebooks.length > 0 ? (
+                  this.state.allNotebooks.map((item, index) => (
+                    <li
+                      onClick={() => {
+                        this.setState({
+                          selected: index,
+                          selectedNotebook: item.notebook_title,
+                          selectedNotebook_id: item.notebook_id,
+                          allNotes: item.notes,
+                        });
+                      }}
+                      class={
+                        index == this.state.selected ? "active-menu" : "menu"
+                      }
+                    >
+                      <h3 className="san-20-bold py-10">
+                        {item.notebook_title}
+                      </h3>
+                    </li>
+                  ))
+                ) : (
+                  ""
+                )}
               </ul>
               <li className="just-center">
                 <img
@@ -126,12 +155,16 @@ class NotebookPage extends Component {
               <img src={DotsLogo} alt="" onClick={this.showOptions} />
             </div>
             <div className="note-card">
-              {this.state.allNotes.map((item, index) => (
-                <TaskContainer
-                  note={item}
-                  notebook_id={this.state.selectedNotebook_id}
-                />
-              ))}
+              {this.state.allNotes.length > 0 ? (
+                this.state.allNotes.map((item, index) => (
+                  <TaskContainer
+                    note={item}
+                    notebook_id={this.state.selectedNotebook_id}
+                  />
+                ))
+              ) : (
+                ""
+              )}
 
               <img
                 src={NewFile}
@@ -189,68 +222,37 @@ class NotebookPage extends Component {
         {this.state.showNewNotebook ? (
           <div className="back_popup">
             <div className="edit-popup-div">
-              <div
-                className="cross"
-                onClick={() => {
-                  this.setState({
-                    showNewNotebook: !this.state.showNewNotebook,
-                  });
-                }}
-              >
-                <h1>X</h1>
-              </div>
-
-              <AddNotebook user_id={"ID91447095"} />
+              <AddNotebook
+                closePopup={this.closePopup}
+                user_id={"ID91447095"}
+              />
             </div>
           </div>
         ) : this.state.showDeleteNotebook ? (
           <div className="back_popup">
             <div className="edit-popup-div">
-              <div
-                className="cross"
-                onClick={() => {
-                  this.setState({
-                    showDeleteNotebook: !this.state.showDeleteNotebook,
-                  });
-                }}
-              >
-                <h1>X</h1>
-              </div>
-
-              <DeleteNotebook notebook_id={this.state.selectedNotebook_id} />
+              <DeleteNotebook
+                closePopup={this.closePopup}
+                notebook_id={this.state.selectedNotebook_id}
+              />
             </div>
           </div>
         ) : this.state.showRenameNotebook ? (
           <div className="back_popup">
             <div className="edit-popup-div">
-              <div
-                className="cross"
-                onClick={() => {
-                  this.setState({
-                    showRenameNotebook: !this.state.showRenameNotebook,
-                  });
-                }}
-              >
-                <h1>X</h1>
-              </div>
-
-              <RenameNotebook notebook_id={this.state.selectedNotebook_id} />
+              <RenameNotebook
+                closePopup={this.closePopup}
+                notebook_id={this.state.selectedNotebook_id}
+              />
             </div>
           </div>
         ) : this.state.showNewNote ? (
           <div className="back_popup">
             <div className="edit-popup-div">
-              <div
-                className="cross"
-                onClick={() => {
-                  this.setState({
-                    showNewNote: !this.state.showNewNote,
-                  });
-                }}
-              >
-                <h1>X</h1>
-              </div>
-              <AddNote notebook_id={this.state.selectedNotebook_id} />
+              <AddNote
+                closePopup={this.closePopup}
+                notebook_id={this.state.selectedNotebook_id}
+              />
             </div>
           </div>
         ) : (
@@ -263,7 +265,7 @@ class NotebookPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    Notebooks: state.Notebooks,
+    NotebooksData: state.Notebooks,
   };
 };
 
