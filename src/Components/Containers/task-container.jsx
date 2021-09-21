@@ -5,15 +5,18 @@ import { Link, useHistory } from "react-router-dom";
 import EditLogo from "../Assets/SVG/edit-task-logo.svg";
 import PropsLogo from "../Assets/SVG/task-props-logo.svg";
 import OpenLogo from "../Assets/SVG/open-file-logo.svg";
-import { DeleteNote } from "./popups";
+import { DeleteNote, RenameNote } from "./popups";
 
 const TaskContainer = ({ note, notebook_id }) => {
   const [ showDeleteNote, setShowDeleteNote ] = useState(false);
   const [ showNoteProperties, setShowNoteProperties ] = useState(false);
+  const [ showRenameNote, setShowRenameNote ] = useState(false);
   const history = useHistory();
   const closePopup = () => {
     setShowDeleteNote(false);
+    setShowRenameNote(false);
   };
+
   return (
     <div id="task-container">
       <div className="task-card">
@@ -31,7 +34,14 @@ const TaskContainer = ({ note, notebook_id }) => {
               setShowDeleteNote(true);
             }}
           />
-          <img src={EditLogo} alt="" />
+          <img
+            src={EditLogo}
+            alt=""
+            onClick={() => {
+              setShowRenameNote(true);
+            }}
+          />
+
           <img
             src={PropsLogo}
             alt=""
@@ -109,6 +119,25 @@ const TaskContainer = ({ note, notebook_id }) => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      ) : showRenameNote ? (
+        <div className="back_popup">
+          <div className="edit-popup-div">
+            <div
+              className="cross"
+              onClick={() => {
+                setShowDeleteNote(false);
+              }}
+            >
+              <h1>X</h1>
+            </div>
+
+            <RenameNote
+              closePopup={closePopup}
+              note_id={note.note_id}
+              notebook_id={notebook_id}
+            />
           </div>
         </div>
       ) : (

@@ -78,7 +78,6 @@ class NotebookPage extends Component {
     }
     return true;
   }
-  componentDidUpdate() {}
   closePopup = () => {
     this.setState({
       showNewNotebook: false,

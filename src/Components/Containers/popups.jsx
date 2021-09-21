@@ -175,10 +175,17 @@ export const AddNote = ({ notebook_id, closePopup }) => {
   );
 };
 
-export const RenameNote = ({ user_id, notebook_id, closePopup }) => {
+export const RenameNote = ({ user_id, notebook_id, closePopup, note_id }) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const onSubmit = async data => {};
+  const onSubmit = async data => {
+    await axios.post(
+      `http://localhost:6500/notebook/rename-note/${notebook_id}/${note_id}`,
+      data
+    );
+
+    closePopup();
+  };
 
   return (
     <div id="edit-popup">
@@ -186,18 +193,21 @@ export const RenameNote = ({ user_id, notebook_id, closePopup }) => {
         <h1>X</h1>
       </div>
       <h1 className="san-24-bold primary">Rename Note</h1> <br />
-      <form onSubmit="">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="Name" className="popup-input-label san-18-bold">
           New name
         </label>
-        <input type="text" className="popup-input-class san-16-light" />
+        <input
+          type="text"
+          className="popup-input-class san-16-light"
+          {...register("note_title", { required: true })}
+        />
         <div className="">
           <div className="button_wrapper">
             <input
               maxlength="18"
               className="button_1 san-16-bold"
               type="submit"
-              value="Rename"
             />
           </div>
         </div>
