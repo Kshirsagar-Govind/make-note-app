@@ -26,7 +26,8 @@ class NotePage extends Component {
     const notebook_id = this.props.match.params.notebook_id;
 
     const res = await axios.post(
-      `http://localhost:6500/notebook/save-note/${notebook_id}/${note_id}`,
+      `${process.env
+        .REACT_APP_HOST}/notebook/save-note/${notebook_id}/${note_id}`,
       data
     );
     alert("Note Saved Success");

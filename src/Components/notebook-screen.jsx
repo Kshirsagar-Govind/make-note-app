@@ -37,13 +37,13 @@ class NotebookPage extends Component {
     };
   }
   componentDidMount() {
-    this.props.getAllNotebooks("ID91447095");
-
+    this.props.getAllNotebooks("ID63512490");
+    this.getData();
     console.log(this.props);
   }
-  async getData() {
+  getData = async () => {
     const res = await fetch(
-      `http://localhost:6500/notebook/get-all-notebooks-data/ID91447095`
+      `http://localhost:6500/notebook/get-all-notebooks-data/ID63512490`
     );
     const allNotebooksData = await res.json();
     console.log(allNotebooksData, "allNotebooksData");
@@ -54,7 +54,7 @@ class NotebookPage extends Component {
       selectedNotebook_id: allNotebooksData[0].notebook_id,
       allNotes: allNotebooksData[0].notes,
     });
-  }
+  };
 
   showOptions = () => {
     this.state.toggle
@@ -65,19 +65,20 @@ class NotebookPage extends Component {
       toggle: !this.state.toggle,
     });
   };
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.NotebooksData != nextProps.NotebooksData) {
-      console.log(nextProps.NotebooksData);
-      this.setState({
-        allNotebooks: nextProps.NotebooksData,
-        selectedNotebook: nextProps.NotebooksData[0].notebook_title,
-        selectedNotebook_id: nextProps.NotebooksData[0].notebook_id,
-        allNotes: nextProps.NotebooksData[0].notes,
-      });
-      return false;
-    }
-    return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(nextProps);
+  //   if (this.props.NotebooksData != nextProps.NotebooksData) {
+  // this.setState({
+  //   allNotebooks: nextProps.NotebooksData,
+  //   selectedNotebook: nextProps.NotebooksData[0].notebook_title,
+  //   selectedNotebook_id: nextProps.NotebooksData[0].notebook_id,
+  //   allNotes: nextProps.NotebooksData[0].notes,
+  // });
+  //     return false;
+  //   }
+  //   return true;
+  // }
+
   closePopup = () => {
     this.setState({
       showNewNotebook: false,
@@ -88,13 +89,13 @@ class NotebookPage extends Component {
   };
   render() {
     // console.log(this.state.allNotebooks);
-    if (this.state.allNotebooks.length == 0) {
-      return (
-        <div className="">
-          <h1>loading</h1>
-        </div>
-      );
-    }
+    // if (this.state.allNotebooks.length == 0) {
+    //   return (
+    //     <div className="">
+    //       <h1>loading</h1>
+    //     </div>
+    //   );
+    // }
 
     return (
       <div id="notebook-page" className="page">

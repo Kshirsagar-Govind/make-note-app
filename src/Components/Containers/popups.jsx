@@ -8,7 +8,7 @@ export const AddNotebook = ({ user_id, closePopup }) => {
   const submit = async data => {
     console.log(data, user_id);
     const res = await axios.post(
-      `http://localhost:6500/notebook/create-notebook/${user_id}`,
+      `${process.env.REACT_APP_HOST}/notebook/create-notebook/${user_id}`,
       data
     );
     console.log(res);
@@ -51,7 +51,7 @@ export const RenameNotebook = ({ user_id, notebook_id, closePopup }) => {
 
   const onSubmit = async data => {
     await axios.post(
-      `http://localhost:6500/notebook/rename-notebook/${notebook_id}`,
+      `${process.env.REACT_APP_HOST}/notebook/rename-notebook/${notebook_id}`,
       data
     );
 
@@ -91,7 +91,7 @@ export const RenameNotebook = ({ user_id, notebook_id, closePopup }) => {
 export const DeleteNotebook = ({ notebook_id, closePopup }) => {
   const deleteNotebook = async () => {
     const res = await axios.post(
-      `http://localhost:6500/notebook/delete-notebook/${notebook_id}`
+      `${process.env.REACT_APP_HOST}/notebook/delete-notebook/${notebook_id}`
     );
     closePopup();
   };
@@ -122,7 +122,7 @@ export const AddNote = ({ notebook_id, closePopup }) => {
   const submit = async data => {
     console.log(data);
     const res = await axios.post(
-      `http://localhost:6500/notebook/create-note/${notebook_id}`,
+      `${process.env.REACT_APP_HOST}/notebook/create-note/${notebook_id}`,
       data
     );
     console.log(res);
@@ -180,7 +180,8 @@ export const RenameNote = ({ user_id, notebook_id, closePopup, note_id }) => {
 
   const onSubmit = async data => {
     await axios.post(
-      `http://localhost:6500/notebook/rename-note/${notebook_id}/${note_id}`,
+      `${process.env
+        .REACT_APP_HOST}/notebook/rename-note/${notebook_id}/${note_id}`,
       data
     );
 
@@ -220,7 +221,8 @@ export const DeleteNote = ({ note_id, notebook_id, closePopup }) => {
   const deleteNote = async () => {
     console.log(note_id, notebook_id);
     await axios.post(
-      `http://localhost:6500/notebook/delete-note/${notebook_id}/${note_id}`
+      `${process.env
+        .REACT_APP_HOST}/notebook/delete-note/${notebook_id}/${note_id}`
     );
 
     closePopup();
