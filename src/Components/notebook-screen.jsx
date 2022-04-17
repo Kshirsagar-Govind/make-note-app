@@ -43,7 +43,7 @@ class NotebookPage extends Component {
   }
   getData = async () => {
     const res = await fetch(
-      `http://localhost:6500/notebook/get-all-notebooks-data/ID63512490`
+      `${process.env.REACT_APP_HOST}/notebook/get-all-notebooks-data/ID63512490`
     );
     const allNotebooksData = await res.json();
     console.log(allNotebooksData, "allNotebooksData");
