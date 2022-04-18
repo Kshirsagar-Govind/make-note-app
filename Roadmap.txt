@@ -1,0 +1,22 @@
+// Pending work -----------------------------------------------------------------------
+1. My Profile Remaining
+2. REACT REDUX IMPLEMENTATION
+3. Login & Sign Up Redesigning Remaining 
+
+
+/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/- 
+
+// ABOUT THIS project ------------------------------------------------------------------
+Make note, in this project user can add notebooks and inside notebooks he can add notes.
+There can be multiple notebooks and so multiple notes inside notebook.
+/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/- 
+ 
+
+
+// Tech ---------------------------------------------------------------------------------
+1. Node js
+2. React JS
+3. React Redux
+4. SCSS
+4. MongoDB Database
+/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/- 
