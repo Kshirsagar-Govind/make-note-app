@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./CSS/registration-page.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const RegistrationPage = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
