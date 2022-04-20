@@ -21,8 +21,8 @@ function App() {
       <Router>
         <Switch>
 
-          <Route path="/" component={NotebookPage} exact />
-          <Route path="/login-page" component={LoginPage} exact />
+          <Route path="/dashboard" component={NotebookPage} exact />
+          <Route path="/" component={LoginPage} exact />
           <Route path="/registration-page" component={RegistrationPage} exact />
           <Route path="/profile-page" component={UserProfile} exact />
           <Route path="/note-page/:note/:notebook_id/:note_id" component={NotePage} exact />

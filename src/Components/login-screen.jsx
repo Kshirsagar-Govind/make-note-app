@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./CSS/registration-page.css";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -64,10 +65,7 @@ const LoginPage = () => {
             <div className="just-center">
               <h4 className="san-16-bold">
                 Need New Account
-                <a href="/registration-page" className="san-18-bold primary">
-                  {" "}
-                  Signup
-                </a>
+                <Link to="/registration-page"> Signup</Link>
               </h4>
             </div>
           </form>
