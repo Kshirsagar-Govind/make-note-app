@@ -7,7 +7,7 @@ import PropsLogo from "../Assets/SVG/task-props-logo.svg";
 import OpenLogo from "../Assets/SVG/open-file-logo.svg";
 import { DeleteNote, RenameNote } from "./popups";
 
-const TaskContainer = ({ note, notebook_id }) => {
+const TaskContainer = ({ note, notebook_id, reload }) => {
   const [ showDeleteNote, setShowDeleteNote ] = useState(false);
   const [ showNoteProperties, setShowNoteProperties ] = useState(false);
   const [ showRenameNote, setShowRenameNote ] = useState(false);
@@ -75,6 +75,7 @@ const TaskContainer = ({ note, notebook_id }) => {
 
             <DeleteNote
               closePopup={closePopup}
+              reload={() => reload()}
               note_id={note.note_id}
               notebook_id={notebook_id}
             />
@@ -135,6 +136,7 @@ const TaskContainer = ({ note, notebook_id }) => {
 
             <RenameNote
               closePopup={closePopup}
+              reload={() => reload()}
               note_id={note.note_id}
               notebook_id={notebook_id}
             />

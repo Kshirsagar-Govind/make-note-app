@@ -1,11 +1,33 @@
 import React, { Component } from "react";
 import "./CSS/registration-page.css";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const LoginPage = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const loginUser = data => {
+
+  const navigate = useHistory();
+  const loginUser = async data => {
     console.log(data);
+    try {
+      const res = await axios.post(
+        `http://localhost:6500/make-note/login-user`,
+        data
+      );
+      console.log(res);
+      if (res.data.code == "404") {
+        alert("User Does Not Exists");
+      } else if (res.data.code == "400") {
+        alert("Invalid Creds");
+      } else if (res.data.code == "200") {
+        alert("Login Success");
+        navigate.push(`/dashboard/${res.data.user.user_id}`);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Failed");
+    }
   };
   return (
     <div id="registration-page" className="page pxy-30">
@@ -46,7 +68,7 @@ const LoginPage = () => {
               </label>
 
               <input
-                {...register("c_password", { required: true })}
+                {...register("c_password")}
                 type="checkbox"
                 className="checkbox-class san-24-bold"
               />
@@ -54,8 +76,8 @@ const LoginPage = () => {
             <br /> <br />
             <div className="submit-div">
               <input
-                className="button_1 san-24-light"
                 type="submit"
+                className="button_1 san-24-light"
                 value="Login"
               />
             </div>

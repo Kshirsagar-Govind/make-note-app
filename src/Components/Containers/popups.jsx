@@ -2,17 +2,21 @@ import React, { Component } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
-export const AddNotebook = ({ user_id, closePopup }) => {
+export const AddNotebook = ({ user_id, closePopup, reload }) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const submit = async data => {
     console.log(data, user_id);
-    const res = await axios.post(
-      `${process.env.REACT_APP_HOST}/notebook/create-notebook/${user_id}`,
-      data
-    );
-    console.log(res);
-    closePopup();
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_HOST}/notebook/create-notebook/${user_id}`,
+        data
+      );
+      console.log(res);
+
+      closePopup();
+      reload();
+    } catch (error) {}
   };
 
   return (
@@ -46,7 +50,12 @@ export const AddNotebook = ({ user_id, closePopup }) => {
   );
 };
 
-export const RenameNotebook = ({ user_id, notebook_id, closePopup }) => {
+export const RenameNotebook = ({
+  user_id,
+  notebook_id,
+  closePopup,
+  reload,
+}) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = async data => {
@@ -56,6 +65,7 @@ export const RenameNotebook = ({ user_id, notebook_id, closePopup }) => {
     );
 
     closePopup();
+    reload();
   };
 
   return (
@@ -88,12 +98,13 @@ export const RenameNotebook = ({ user_id, notebook_id, closePopup }) => {
   );
 };
 
-export const DeleteNotebook = ({ notebook_id, closePopup }) => {
+export const DeleteNotebook = ({ notebook_id, closePopup, reload }) => {
   const deleteNotebook = async () => {
     const res = await axios.post(
       `${process.env.REACT_APP_HOST}/notebook/delete-notebook/${notebook_id}`
     );
     closePopup();
+    reload();
   };
   return (
     <div id="edit-popup">
@@ -116,7 +127,7 @@ export const DeleteNotebook = ({ notebook_id, closePopup }) => {
   );
 };
 
-export const AddNote = ({ notebook_id, closePopup }) => {
+export const AddNote = ({ notebook_id, closePopup, reload }) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const submit = async data => {
@@ -128,6 +139,7 @@ export const AddNote = ({ notebook_id, closePopup }) => {
     console.log(res);
 
     closePopup();
+    reload();
   };
 
   return (
@@ -175,7 +187,13 @@ export const AddNote = ({ notebook_id, closePopup }) => {
   );
 };
 
-export const RenameNote = ({ user_id, notebook_id, closePopup, note_id }) => {
+export const RenameNote = ({
+  user_id,
+  notebook_id,
+  closePopup,
+  note_id,
+  reload,
+}) => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const onSubmit = async data => {
@@ -186,6 +204,7 @@ export const RenameNote = ({ user_id, notebook_id, closePopup, note_id }) => {
     );
 
     closePopup();
+    reload();
   };
 
   return (
@@ -217,7 +236,7 @@ export const RenameNote = ({ user_id, notebook_id, closePopup, note_id }) => {
   );
 };
 
-export const DeleteNote = ({ note_id, notebook_id, closePopup }) => {
+export const DeleteNote = ({ note_id, notebook_id, closePopup, reload }) => {
   const deleteNote = async () => {
     console.log(note_id, notebook_id);
     await axios.post(
@@ -226,6 +245,7 @@ export const DeleteNote = ({ note_id, notebook_id, closePopup }) => {
     );
 
     closePopup();
+    reload();
   };
   return (
     <div id="edit-popup">

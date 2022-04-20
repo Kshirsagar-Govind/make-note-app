@@ -4,10 +4,10 @@ body {
   font-family: 'Syncopate', sans-serif;
 }
 :root {
-  --primary: #ff006b;
+  --primary: #3f6528;
   --pure: #ffffff;
-  --greyshade: #4f4f4f;
-  --light_primary: #ffe2ee;
+  --greyshade: #2b2b2b;
+  --light_primary: #adff6d;
 }
 .primary {
   color: var(--primary);

@@ -32,14 +32,15 @@ class NotePage extends Component {
     );
     alert("Note Saved Success");
   };
+  goBack = () => {
+    window.history.back();
+  };
 
   render() {
     return (
       <div id="note-page" className="page">
         <div className="note-header just-space">
-          <Link to="/">
-            <img src={BackLogo} alt="" />
-          </Link>
+          <img onClick={() => this.goBack()} src={BackLogo} alt="" />
 
           <h3 className="san-28-bold">Notebook</h3>
 
