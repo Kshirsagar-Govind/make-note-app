@@ -8,7 +8,7 @@ import DeleteLogo from "./Assets/SVG/delete-logo.svg";
 import AddLogo from "./Assets/SVG/add-logo.svg";
 import UserLogo from "./Assets/SVG/user-logo.svg";
 import { connect } from "react-redux";
-
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "./CSS/main.css";
 import {
@@ -34,26 +34,32 @@ class NotebookPage extends Component {
       allNotebooks: [],
       allNotes: [],
       selected: 0,
+      user_id: this.props.match.params.id,
     };
   }
   componentDidMount() {
     this.props.getAllNotebooks("ID63512490");
     this.getData();
-    console.log(this.props);
+    console.log(this.props.match.params.id);
   }
   getData = async () => {
-    const res = await fetch(
-      `${process.env.REACT_APP_HOST}/notebook/get-all-notebooks-data/ID63512490`
+    const res = await axios.get(
+      `http://localhost:6500/notebook/get-all-notebooks-data/${this.state
+        .user_id}`
     );
-    const allNotebooksData = await res.json();
-    console.log(allNotebooksData, "allNotebooksData");
-
-    this.setState({
-      allNotebooks: await allNotebooksData,
-      selectedNotebook: allNotebooksData[0].notebook_title,
-      selectedNotebook_id: allNotebooksData[0].notebook_id,
-      allNotes: allNotebooksData[0].notes,
-    });
+    // const allNotebooksData = await res.json();
+    console.log(res.data[0].notebooks[0].notes, "allNotebooksData");
+    if (res.data.length == 0) return;
+    else {
+      this.setState({
+        allNotebooks: res.data[0].notebooks,
+        selectedNotebook: res.data[0].notebooks[0].notebook_title,
+        selectedNotebook_id: res.data[0].notebooks[0].notebook_id,
+        allNotes: res.data[0].notebooks[0].notes
+          ? res.data[0].notebooks[0].notes
+          : [],
+      });
+    }
   };
 
   showOptions = () => {
@@ -65,19 +71,6 @@ class NotebookPage extends Component {
       toggle: !this.state.toggle,
     });
   };
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log(nextProps);
-  //   if (this.props.NotebooksData != nextProps.NotebooksData) {
-  // this.setState({
-  //   allNotebooks: nextProps.NotebooksData,
-  //   selectedNotebook: nextProps.NotebooksData[0].notebook_title,
-  //   selectedNotebook_id: nextProps.NotebooksData[0].notebook_id,
-  //   allNotes: nextProps.NotebooksData[0].notes,
-  // });
-  //     return false;
-  //   }
-  //   return true;
-  // }
 
   closePopup = () => {
     this.setState({
@@ -158,6 +151,7 @@ class NotebookPage extends Component {
               {this.state.allNotes.length > 0 ? (
                 this.state.allNotes.map((item, index) => (
                   <TaskContainer
+                    reload={() => this.getData()}
                     note={item}
                     notebook_id={this.state.selectedNotebook_id}
                   />
@@ -223,8 +217,9 @@ class NotebookPage extends Component {
           <div className="back_popup">
             <div className="edit-popup-div">
               <AddNotebook
+                reload={() => this.getData()}
                 closePopup={this.closePopup}
-                user_id={"ID91447095"}
+                user_id={this.state.user_id}
               />
             </div>
           </div>
@@ -232,6 +227,7 @@ class NotebookPage extends Component {
           <div className="back_popup">
             <div className="edit-popup-div">
               <DeleteNotebook
+                reload={() => this.getData()}
                 closePopup={this.closePopup}
                 notebook_id={this.state.selectedNotebook_id}
               />
@@ -241,6 +237,7 @@ class NotebookPage extends Component {
           <div className="back_popup">
             <div className="edit-popup-div">
               <RenameNotebook
+                reload={() => this.getData()}
                 closePopup={this.closePopup}
                 notebook_id={this.state.selectedNotebook_id}
               />
@@ -250,6 +247,7 @@ class NotebookPage extends Component {
           <div className="back_popup">
             <div className="edit-popup-div">
               <AddNote
+                reload={() => this.getData()}
                 closePopup={this.closePopup}
                 notebook_id={this.state.selectedNotebook_id}
               />

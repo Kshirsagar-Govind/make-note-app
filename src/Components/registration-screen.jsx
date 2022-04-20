@@ -1,13 +1,27 @@
 import React, { Component } from "react";
 import "./CSS/registration-page.css";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
 const RegistrationPage = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const signupUser = data => {
-    console.log(data);
+  const signupUser = async data => {
+    try {
+      const res = await axios.post(
+        `http://localhost:6500/make-note/new-user`,
+        data
+      );
+      console.log(res);
+      if (res.data.code == "404") {
+        alert("User ALready Exists");
+      } else if (res.data.code == "200") {
+        alert("Registration Success");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Registration Failed");
+    }
   };
 
   return (
