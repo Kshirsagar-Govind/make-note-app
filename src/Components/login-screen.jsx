@@ -13,7 +13,7 @@ const LoginPage = () => {
     console.log(data);
     try {
       const res = await axios.post(
-        `http://localhost:6500/make-note/login-user`,
+        `${process.env.REACT_APP_HOST}/make-note/login-user`,
         data
       );
       console.log(res);

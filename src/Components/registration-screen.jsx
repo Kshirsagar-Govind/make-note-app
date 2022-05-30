@@ -10,7 +10,7 @@ const RegistrationPage = () => {
   const signupUser = async data => {
     try {
       const res = await axios.post(
-        `http://localhost:6500/make-note/new-user`,
+        `${process.env.REACT_APP_HOST}/make-note/new-user`,
         data
       );
       console.log(res);

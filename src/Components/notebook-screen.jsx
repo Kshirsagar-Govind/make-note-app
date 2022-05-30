@@ -44,8 +44,8 @@ class NotebookPage extends Component {
   }
   getData = async () => {
     const res = await axios.get(
-      `http://localhost:6500/notebook/get-all-notebooks-data/${this.state
-        .user_id}`
+      `${process.env.REACT_APP_HOST}/notebook/get-all-notebooks-data/${this
+        .state.user_id}`
     );
     // const allNotebooksData = await res.json();
     console.log(res.data[0].notebooks[0].notes, "allNotebooksData");
