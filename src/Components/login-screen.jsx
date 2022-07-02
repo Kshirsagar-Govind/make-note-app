@@ -90,6 +90,15 @@ const LoginPage = () => {
                 <Link to="/registration-page"> Signup</Link>
               </h4>
             </div>
+            <h3
+              style={{
+                fontFamily: "sans-serif",
+              }}
+            >
+              Test Account <br />
+              [username - test@mail.com] <br />
+              [password - 12345]
+            </h3>
           </form>
         </div>
       </div>
